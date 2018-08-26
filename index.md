@@ -675,7 +675,7 @@ The created window sets an unchaught exception-handler for displaying the except
    AutoGuiShell.showLive(new Hello());
 ```
 
-<img src="docs/images/image-log-exception-h.png" srcset="docs/images/image-log-exception-h.png 1x, docs/images/image-log-exception 2x" alt="Progress">
+<img src="docs/images/image-log-exception-h.png" srcset="docs/images/image-log-exception-h.png 1x, docs/images/image-log-exception.png 2x" alt="Progress">
 
 ### Long running action and progress-bars	
 
@@ -694,4 +694,4 @@ A long running action will be an independent task with displaying an indetermina
   AutoGuiShell.showLive(new Hello())
 ```
 
-<img src="docs/images/image-log-longrunning-h.png" srcset="docs/images/image-log-longrunning-h.png 1x, docs/images/image-log-longrunning 2x" alt="Progress">
+<img src="docs/images/image-log-longrunning-h.png" srcset="docs/images/image-log-longrunning-h.png 1x, docs/images/image-log-longrunning.png 2x" alt="Progress">
