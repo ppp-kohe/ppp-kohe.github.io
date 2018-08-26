@@ -15,6 +15,13 @@ and composes Swing-based components for each types of properties and actions def
 
 ## Building from source
 
+Project URL: https://github.com/ppp-kohe/autogui
+
+```bash
+$ git clone https://github.com/ppp-kohe/autogui.git
+$ cd autogui
+```
+
 The project uses [apache-maven](http://maven.apache.org) and depends on Java 8 or later. 
 
 ```bash
