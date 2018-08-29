@@ -1,4 +1,5 @@
 ---
+title: Autogui: an automatic GUI binding library
 layout: home
 ---
 
@@ -15,7 +16,7 @@ and composes Swing-based components for each types of properties and actions def
 
 ## Building from source
 
-Project URL: https://github.com/ppp-kohe/autogui
+[GitHub Project Page](https://github.com/ppp-kohe/autogui)
 
 ```bash
 $ git clone https://github.com/ppp-kohe/autogui.git
