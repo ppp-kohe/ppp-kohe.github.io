@@ -16,7 +16,7 @@ and composes Swing-based components for each types of properties and actions def
 
 ## Building from source
 
-[GitHub Project Page](https://github.com/ppp-kohe/autogui)
+[GitHub Project Page](https://github.com/ppp-kohe/autogui.git)
 
 ```bash
 $ git clone https://github.com/ppp-kohe/autogui.git
