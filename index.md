@@ -54,7 +54,7 @@ To use the library, you first need to include the jar file of the library to you
 In `jshell`, you can do that by `/env --add-class-path <path/to/jar>`.
 After launch the tool by the command `jshell`, you can paste the following code.
 
-```java
+```
 $ git clone https://github.com/ppp-kohe/autogui.git
 $ cd autogui
 $ mvn package
@@ -69,7 +69,9 @@ class Hello {
       System.out.println(value);
    }
 }
+
 /env -class-path target/autogui-1.0.jar
+
 import org.autogui.swing.*
 Hello h = new Hello();
 AutoGuiShell.showLive(h)
