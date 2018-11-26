@@ -1,8 +1,3 @@
----
-title: Autogui: an automatic GUI binding library
-layout: home
----
-
 # Autogui: an automatic GUI binding library
 
 Autogui is a library for automatically creating Java/Swing GUI apps from plain-old Java objects.
@@ -51,7 +46,7 @@ The library jar is available from Maven Central Repository.
 
 The library can be used with `jshell` which is the offical REPL-tool bundled with JDK since Java 9.
 To use the library, you first need to include the jar file of the library to your class-path.
-In `jshell`, you can do that by `/env --add-class-path <path/to/jar>`.
+In `jshell`, you can do that by `/env -class-path <path/to/jar>`.
 After launch the tool by the command `jshell`, you can paste the following code.
 
 ```
