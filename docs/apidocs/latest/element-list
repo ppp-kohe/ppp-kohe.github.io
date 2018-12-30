@@ -1,0 +1,11 @@
+org.autogui
+org.autogui.base
+org.autogui.base.log
+org.autogui.base.mapping
+org.autogui.base.type
+org.autogui.swing
+org.autogui.swing.icons
+org.autogui.swing.log
+org.autogui.swing.mapping
+org.autogui.swing.table
+org.autogui.swing.util
