@@ -173,7 +173,7 @@ The strict mode ...
 *  can be started by [`AutoGuiShell.get().showWindow(o)`](docs/apidocs/latest/org/autogui/swing/AutoGuiShell.html#showWindow(java.lang.Object))
 *  targets on[`@GuiIncluded`](docs/apidocs/latest/org/autogui/GuiIncluded.html) and `public` classes, properties and members
 
-The `ImageFlipDemo.java` is the following Java program:
+The following Java program is an example application with the struct mode:
 
 ```java
   import org.autogui.GuiIncluded;
