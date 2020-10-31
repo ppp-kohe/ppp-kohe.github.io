@@ -2,7 +2,7 @@
 
 Autogui is a library for automatically creating Java/Swing GUI apps from plain-old Java objects.
 It analyzes class-definitions of given objects through reflection APIs, 
-and composes Swing-based components for each types of properties and actions defined in the classes.
+and composes Swing-based components for each type of property and action defined in the classes.
 
 ## License
 
@@ -25,7 +25,7 @@ The project uses [apache-maven](http://maven.apache.org) and depends on a recent
 
 ```bash
 $ mvn package
-  # the command will generate target/autogui-1.1.3.jar
+  # the command will generate target/autogui-1.2.jar
 ```
 
 Note that the main part of the project does not depend on any libraries other than JDK classes. 
@@ -39,7 +39,7 @@ To use the library in your apaceh-maven project, you can insert the following `d
     <dependency>
         <groupId>org.autogui</groupId>
         <artifactId>autogui</artifactId>
-        <version>1.1.3</version>
+        <version>1.2</version>
     </dependency>
 ```
 
@@ -51,10 +51,10 @@ The library jar is available from Maven Central Repository: [org.autogui:autogui
 
 ## Quick tutorial: A tiny example with jshell
 
-The library can be used with `jshell` which is the official REPL-tool bundled with JDK since Java 9.
+The library can be used with `jshell` that is the official REPL-tool bundled with JDK since Java 9.
 To use the library, you first need to include the jar file of the library to your class-path.
 In `jshell`, you can do that by `/env -class-path <path/to/jar>`.
-After launch the tool by the command `jshell`, you can paste the following code.
+After launching the tool by the command `jshell`, you can paste the following code.
 
 ```
 $ git clone https://github.com/ppp-kohe/autogui.git
@@ -72,7 +72,7 @@ class Hello {
    }
 }
 
-/env -class-path target/autogui-1.1.3.jar
+/env -class-path target/autogui-1.2.jar
 
 import org.autogui.swing.*
 Hello h = new Hello();
@@ -81,9 +81,9 @@ AutoGuiShell.showLive(h)
 ```
 
 The above code defines the class `Hello` with an instance field and a method.
-After that, [`org.autogui.swing.AutoGuiShell.showLine(Object)`](docs/apidocs/latest/org/autogui/swing/AutoGuiShell.html#showLive(java.lang.Object)) starts creating a GUI window from the given object and shows the window.
+After that, [`org.autogui.swing.AutoGuiShell.showLine(Object)`](docs/apidocs/latest/org.autogui/org/autogui/swing/AutoGuiShell.html#showLive(java.lang.Object)) starts creating a GUI window from the given object and shows the window.
 
-The created window will contain a text field labelled as "Value" and a button on the tool-bar labelled as "Action". 
+The created window will contain a text field labeled as "Value" and a button on the tool-bar labeled as "Action". 
 You can fill the text field with the string "hello, world" by typing the keyboard and click the button, then you will see "hello, world" on the console of `jshell`.
 
 <img src="docs/images/image-hello-h.png" srcset="docs/images/image-hello-h.png 1x, docs/images/image-hello.png 2x" alt="Hello">
@@ -152,26 +152,26 @@ The program will show a GUI window like the following image:
 
 The displayed window has the following GUI components:
 
-* The image pane *Image* created from the field `BufferedImage image` : You can drag & drop an image file in order to supply an input image data. The dropped image will be automatically loaded as an 
+* The image pane *Image* created from the field `BufferedImage image` : You can drag & drop an image file to supply an input image data. The dropped image will be automatically loaded as a 
   [`BufferedImage`](https://docs.oracle.com/en/java/javase/11/docs/api/java.desktop/java/awt/image/BufferedImage.html) 
-  object and displayed in the pane, and assigned to the field.
+  object and displayed in the pane and assigned to the field.
 
-* The action button *Flip Y*  created from the method `void flipY()` : After drop an image, you can click the button in order to flip Y coordinate  of the image. The created `newImage` will be assigned to the `image` field. After the execution of the method, the image pane will show the flipped image.
-* The file name field *Output*  created from the field `File output` : You can put a name of saving the flipped image. The field Initially displays "output.png" as the initial value of the field. User input for the text field will change the field value to a new
+* The action button *Flip Y*  created from the method `void flipY()` : After dropping an image, you can click the button to flip Y coordinate  of the image. The created `newImage` will be assigned to the `image` field. After the execution of the method, the image pane will show the flipped image.
+* The file name field *Output*  created from the field `File output` : You can put the name of saving the flipped image. The field initially displays "output.png" as the initial value of the field. User input for the text field will change the field value to a new
 [`File`](https://docs.oracle.com/en/java/javase/11/docs/api/java.base/java/io/File.html)   object.
 * The action button *Save*  created from `void save()` : The action can write the flipped image as a new file specified by the Output field in the working directory.
 
 ## Strict mode with @GuiIncluded
 
-To create an application which can be executed from the `main` method, 
-it is reasonable to restrict GUI aware members in the specified object.
-[`@GuiIncluded`](docs/apidocs/latest/org/autogui/GuiIncluded.html) and 
-[`AutGuiShell.get().showWindow(o)`](docs/apidocs/latest/org/autogui/swing/AutoGuiShell.html) satisfies the restriction.
+To create an application that can be executed from the `main` method, 
+it is reasonable to restrict GUI-aware members in the specified object.
+[`@GuiIncluded`](docs/apidocs/latest/org.autogui/org/autogui/GuiIncluded.html) and 
+[`AutGuiShell.get().showWindow(o)`](docs/apidocs/latest/org.autogui/org/autogui/swing/AutoGuiShell.html) satisfy the restriction.
 
 The strict mode ...
 
-*  can be started by [`AutoGuiShell.get().showWindow(o)`](docs/apidocs/latest/org/autogui/swing/AutoGuiShell.html#showWindow(java.lang.Object))
-*  targets on[`@GuiIncluded`](docs/apidocs/latest/org/autogui/GuiIncluded.html) and `public` classes, properties and members
+*  can be started by [`AutoGuiShell.get().showWindow(o)`](docs/apidocs/latest/org.autogui/org/autogui/swing/AutoGuiShell.html#showWindow(java.lang.Object))
+*  targets on[`@GuiIncluded`](docs/apidocs/latest/org.autogui/org/autogui/GuiIncluded.html) and `public` classes, properties and members
 
 The following Java program is an example application with the struct mode:
 
@@ -205,14 +205,14 @@ The following Java program is an example application with the struct mode:
 
 <img src="docs/images/image-strict-h.png" srcset="docs/images/image-strict-h.png 1x, docs/images/image-strict.png 2x" alt="Strict mode">
 
-The [`showWindow`](docs/apidocs/latest/org/autogui/swing/AutoGuiShell.html#showWindow(java.lang.Object)) instance method of `AutGuiShell` restricts members to 
-public ones with the annotation [`org.autogui.GuiIncluded`](docs/apidocs/latest/org/autogui/GuiIncluded.html) attached. 
+The [`showWindow`](docs/apidocs/latest/org.autogui/org/autogui/swing/AutoGuiShell.html#showWindow(java.lang.Object)) instance method of `AutGuiShell` restricts members to 
+public ones with the annotation [`org.autogui.GuiIncluded`](docs/apidocs/latest/org.autogui/org/autogui/GuiIncluded.html) attached. 
 With `AutoGuiShell.get().showWindow(o)`, you will need to attach the annotation to all members (classes, fields, getters, setters and actions) you want to include GUI.
 
 
 ## Using from modules
 
-If your code for binding with the library is defined as a member of a module which is introduced since Java 9, you will need to open your code to the library. This is because the library relies on reflection APIs for accessing to your code. In a named module, the reflection APIs are restricted to *open* members. 
+If your code for binding with the library is defined as a member of a module which is introduced since Java 9, you will need to open your code to the library. This is because the library relies on reflection APIs for accessing your code. In a named module, the reflection APIs are restricted to *open* members. 
 
 The module name of the library is `org.autogui`. You will need to do the following steps in your `module-info.java` :
 
@@ -230,9 +230,9 @@ open module your.module { //adds the "open" modifier to the your module, or...
 }
 ```
 
-The earlier versions (-1.1) of the library was an *automatic module*, which does not contain `module-info.class` becase of supporting Java 8. You can add the jar of the libarry to both the class-path and the module-path. But, an automatic module cannot be included in jlink's modules.
+The earlier versions (-1.1) of the library was an *automatic module*, which does not contain `module-info.class` because of supporting Java 8. You can add the jar of the library to both the class-path and the module-path. But, an automatic module cannot be included in jlink's modules.
 
-The recent versions (1.2-) has the `module-info.class` and requires Java 11 or later. It can still be added to both the class-path and the module-path, and can also be assembled as a custom runtime image generated by jlink. (But the library still relies on reflection APIs, so you should carefully consider when adopting it in your practical products.)
+The recent versions (1.2-) have the `module-info.class` and require Java 11 or later. It can still be added to both the class-path and the module-path, and can also be assembled as a custom runtime image generated by jlink. (But the library still relies on reflection APIs, so you should carefully consider when adopting it in your practical products.)
 
 ## Supported types and components
 
@@ -256,7 +256,7 @@ The recent versions (1.2-) has the `module-info.class` and requires Java 11 or l
   * Embedded component: a sub-type of 
     [`javax.swing.JComponent`](https://docs.oracle.com/en/java/javase/11/docs/api/java.desktop/javax/swing/JComponent.html)
 * Object pane: a user-defiend object type with composition of properties and actions
-  * Object properties: `T getP() {...}`, `void setP(T) {...}` or `T p;`
+  * Object properties: `T getP() {...}`, `T p() {...}` (1.2-) , `void setP(T) {...}` or `T p;`
       * if all members are other user-defined objects, then the enclosing object will be bound to a tabbed-pane
   * Action methods: `void m() {...}`
 * Collection table: a sub-type of 
@@ -276,7 +276,7 @@ The recent versions (1.2-) has the `module-info.class` and requires Java 11 or l
         [`java.lang.Enum`](https://docs.oracle.com/en/java/javase/11/docs/api/java.base/java/lang/Enum.html)
       * Image column: a sub-type of 
         [`java.awt.Image`](https://docs.oracle.com/en/java/javase/11/docs/api/java.desktop/java/awt/Image.html)
-  * A user-defined object-type composing columns from it's properties and actions
+  * A user-defined object-type composing columns from its properties and actions
   * Dynamic Collection table: a nested `Collection<Collection<E>>` or a multi-dimentional array `E[][]`
 
 ### String text-field
@@ -299,7 +299,7 @@ will be bound to a text field.
 A property of 
 [`java.nio.file.Path`](https://docs.oracle.com/en/java/javase/11/docs/api/java.base/java/nio/file/Path.html) or 
 [`java.io.File`](https://docs.oracle.com/en/java/javase/11/docs/api/java.base/java/io/File.html) 
-will be bound to a text field with extension for file operations.
+will be bound to a text field with an extension for file operations.
 
 ```java
   import java.io.File;
@@ -365,7 +365,7 @@ Members of the enum becomes items of the menu.
 
 A property of 
 [`java.awt.Image`](https://docs.oracle.com/en/java/javase/11/docs/api/java.desktop/java/awt/Image.html) 
- or it's sub-type will be bound to a pane for image previewing.
+ or its sub-type will be bound to a pane for image previewing.
 
 ```java
   import java.awt.*;
@@ -413,7 +413,7 @@ A property of
 [`java.lang.StringBuilder`](https://docs.oracle.com/en/java/javase/11/docs/api/java.base/java/lang/StringBuilder.html)
 or 
 [`javax.swing.text.Document`](https://docs.oracle.com/en/java/javase/11/docs/api/java.desktop/javax/swing/text/Document.html) 
-and it's sub-type will be bound to a text-edit pane.
+and its sub-type will be bound to a text-edit pane.
 
 ```java
   class Hello {
@@ -425,7 +425,7 @@ and it's sub-type will be bound to a text-edit pane.
 <img src="docs/images/image-document-h.png" srcset="docs/images/image-document-h.png 1x, docs/images/image-document.png 2x" alt="Document editor">
 
 Change of the property value will cause replacing the document of the editor. 
-So the proeprty needs to hold/return a consistent value for maintaining the editing contents by the user.
+So the property needs to hold/return a consistent value for maintaining the editing contents by the user.
 
 #### Advice about document properties
 
@@ -440,8 +440,8 @@ So, **the user code should not modify contents of `StringBuilder` or `Document` 
 
 When the type of the property is 
 [`javax.swing.text.StyledDocument`](https://docs.oracle.com/en/java/javase/11/docs/api/java.desktop/javax/swing/text/StyledDocument.html) 
-, it's sub-type or `StringBuiilder`, 
-the user can change it's (global) style by settings from the context menu.
+, its sub-type or `StringBuiilder`, 
+the user can change its (global) style by settings from the context menu.
 
 <img src="docs/images/image-document-styled-h.png" srcset="docs/images/image-document-styled-h.png 1x, docs/images/image-document-styled.png 2x" alt="Document editor with styles">
 
@@ -505,12 +505,17 @@ A *property* can be defiend as 1) an accessible field definition or 2) a pair of
 <img src="docs/images/image-prop-h.png" srcset="docs/images/image-prop-h.png 1x, docs/images/image-prop.png 2x" alt="Properties">
 
 A *getter* method is a method whose name starts with `get` or `is` for booleans and which does not take any arguments with returning a value of the type of the property.
+
+Since 1.2, the library also supports the `T prop()` method as a *getter*  like `String prop()`. This is due to supporting  [*record*](https://openjdk.java.net/jeps/359) constructs introduced since Java 14. This rule may unintentionally hide your action method that returns a non-void value and recognize it as a getter.  To back the recognition as an action method, you can use the annotation parameter [`@GuiIncluded(action=true)`](docs/apidocs/latest/org.autogui/org/autogui/GuiIncluded.html#action()).
+
 A *setter* method is a method whose name starts with `set` and which takes only one argument of the type of the property value.
 
 If a property is defined only a getter method, then the property value becomes *read-only*.
 
 In the setter method, the user code can cause modification of some other properties.
 The created UI automatically specifies changed properties of the object pane. In order to achieve the UI updateing, a getter method will be called abruptly and frequently.
+
+
 
 #### AutoCloseable support
 
@@ -521,7 +526,7 @@ then
 of objects of the class will be called at closing of owner window of those objects.
 
  (A returned window by `AutoGuiShell.showLive(o)` does not automatically call the method by window closing. Use 
-[`cleanUp()`](docs/apidocs/latest/org/autogui/swing/GuiSwingWindow.html#cleanUp())
+[`cleanUp()`](docs/apidocs/latest/org.autogui/org/autogui/swing/GuiSwingWindow.html#cleanUp())
 for completely closing the window.)
 
 ### Object tabbed-pane
@@ -550,7 +555,7 @@ A user-defined object which has only properties of sub user-defined objects with
 
 A property of 
 [`javax.swing.JComponent`](https://docs.oracle.com/en/java/javase/11/docs/api/java.desktop/javax/swing/JComponent.html)
-or it's sub-type will be bound to a pane for embedding the property value as sub-component.
+or its sub-type will be bound to a pane for embedding the property value as sub-component.
 
 ```java
   import java.awt.*;
@@ -588,7 +593,7 @@ A returned embedded component will be added as a sub-compoennt of the owner obje
 #### Embedding component to your Swing applications
 
 To embed object GUI created by the library into your Swing applications, you can use 
-[`org.autogui.swing.GuiSwingRootPane.createForObject(o)`](docs/apidocs/latest/org/autogui/swing/GuiSwingRootPane.html#createForObject(java.lang.Object)).
+[`org.autogui.swing.GuiSwingRootPane.createForObject(o)`](docs/apidocs/latest/org.autogui/org/autogui/swing/GuiSwingRootPane.html#createForObject(java.lang.Object)).
 
 Please see 
 [`src/test/java/org/autogui/demo/ObjectEmbeddedDemo.java`](https://github.com/ppp-kohe/autogui/tree/master/src/test/java/org/autogui/demo/ObjectEmbeddedDemo.java).
@@ -604,7 +609,7 @@ To run the example:
 
 A property for 
 [`java.util.Collection<E>`](https://docs.oracle.com/en/java/javase/11/docs/api/java.base/java/util/Collection.html),
-it's sub-type or an array type `E[]`  will be bound to a table pane.
+its sub-type or an array type `E[]`  will be bound to a table pane.
 The column of the table will be created from the type-argument `E`.
 
 ```java
@@ -685,8 +690,8 @@ The created table for lists has ability to control selection of item cells.
 
 There are two types of bindings:
 
-* Special methods for actions of changing selected items in the table by returning a list of the items : sepcified by [`@GuiListSelectionUpdater`](docs/apidocs/latest/org/autogui/GuiListSelectionUpdater.html)
-* Special methods for callbacks of user item selection from the table UI: specified by [`@GuiListSelectionCallback`](docs/apidocs/latest/org/autogui/GuiListSelectionCallback.html)
+* Special methods for actions of changing selected items in the table by returning a list of the items : sepcified by [`@GuiListSelectionUpdater`](docs/apidocs/latest/org.autogui/org/autogui/GuiListSelectionUpdater.html)
+* Special methods for callbacks of user item selection from the table UI: specified by [`@GuiListSelectionCallback`](docs/apidocs/latest/org.autogui/org/autogui/GuiListSelectionCallback.html)
 
 ```java
 import java.util.*;
@@ -737,7 +742,7 @@ Display-names of properties, actions and type-names are generated from their ide
   }
 ```
 
-The name can be customized by the annotation [`@GuiIncluded(name=...)`](docs/apidocs/latest/org/autogui/GuiIncluded.html#name()).
+The name can be customized by the annotation [`@GuiIncluded(name=...)`](docs/apidocs/latest/org.autogui/org/autogui/GuiIncluded.html#name()).
 
 ```java
   class Hello {
@@ -748,7 +753,7 @@ The name can be customized by the annotation [`@GuiIncluded(name=...)`](docs/api
 ### Layout order by @GuiIncluded(index=...)
 
 Order of layout of components can be controlled by  the annotation
-[`@GuiIncluded(index=...)`](docs/apidocs/latest/org/autogui/GuiIncluded.html#index()). 
+[`@GuiIncluded(index=...)`](docs/apidocs/latest/org.autogui/org/autogui/GuiIncluded.html#index()). 
 The default order is determined by names of the properties. 
 
 ```java
@@ -771,7 +776,7 @@ For a pair of getter and setter, one of annotations attached to the members is a
 ### Component description by @GuiIncluded(description=...)
 
 To display a tool-tip message for a member, you can use
-[`@GuiIncluded(description=...)`](docs/apidocs/latest/org/autogui/GuiIncluded.html#description()). 
+[`@GuiIncluded(description=...)`](docs/apidocs/latest/org.autogui/org/autogui/GuiIncluded.html#description()). 
 
 
 ```java
@@ -786,7 +791,7 @@ To display a tool-tip message for a member, you can use
 ### Key binding by @GuiIncluded(keyStroke=...)
 
 The library automatically sets shortcut keys for members based on their names.
-[`@GuiIncluded(keyStroke=...)`](docs/apidocs/latest/org/autogui/GuiIncluded.html#keyStroke()) can controle binding keys. 
+[`@GuiIncluded(keyStroke=...)`](docs/apidocs/latest/org.autogui/org/autogui/GuiIncluded.html#keyStroke()) can controle binding keys. 
 
 * `keyStroke="none"`: avoid binding
 * `keyStroke="<control>... <key>"`
@@ -825,10 +830,10 @@ Also, *Control + Enter* will display the context menu for the focusing component
 
 ## Active Updating of UI Elements
 
-As default, GUIs generated by the library automatically updates it's display, i.e. it notices changes that requires redisplaying by accessing their properties after some actions happened.
+As default, GUIs generated by the library automatically updates its display, i.e. it notices changes that requires redisplaying by accessing their properties after some actions happened.
 
 The feature of 
-[`@GuiNotifierSetter`](docs/apidocs/latest/org/autogui/GuiNotifierSetter.html)
+[`@GuiNotifierSetter`](docs/apidocs/latest/org.autogui/org/autogui/GuiNotifierSetter.html)
 enables you to explicitly update a specified GUI element by calling given a 
 [`Runnable`](https://docs.oracle.com/en/java/javase/13/docs/api/java.base/java/lang/Runnable.html)
 object. The annotation can be attached to a setter method taking a `Runnable` argument. In your code, you can call the `run()` method of the given `Runnable`  object in order to cause redisplaying of the target GUI element on demand. The target GUI element can be specified by the signature  `set<YourPropertyName>Notifier(Runnable r)`  or by using the annotation parameter `@GuiNotifierSetter(target="yourPropertyName")`.
@@ -866,7 +871,7 @@ class Hello implements AutoCloseable {
 org.autogui.swing.AutoGuiShell.showLive(new Hello())
 ```
 
-The above example will show a text field that periodically updates it's text as the current time every 3 seconds. 
+The above example will show a text field that periodically updates its text as the current time every 3 seconds. 
 
 The updating is done by the `update()` method; it rewrites `prop`  with the time string ( 
 [`Instant.now().toString()`](https://docs.oracle.com/en/java/javase/13/docs/api/java.base/java/time/Instant.html#now()) 
@@ -879,7 +884,7 @@ method as a `ScheduledFuture` task.
 
 ## Preferences management
 
-The created window has ability to save and reuse a set of property-values of It's binding sub-components.
+The created window has ability to save and reuse a set of property-values of Its binding sub-components.
 This feature relies on 
 [`java.util.prefs`](https://docs.oracle.com/en/java/javase/11/docs/api/java.prefs/java/util/prefs/package-summary.html).
 
@@ -908,10 +913,10 @@ The created window has a status-bar and a list of displaying logging entries. An
 
 The created window will replace 
 [`System.err`](https://docs.oracle.com/en/java/javase/11/docs/api/java.base/java/lang/System.html#err) and 
-[`System.out`](https://docs.oracle.com/en/java/javase/11/docs/api/java.base/java/lang/System.html#out) with redirecting it's outputs to a status-view and a list-window  on the created window. 
+[`System.out`](https://docs.oracle.com/en/java/javase/11/docs/api/java.base/java/lang/System.html#out) with redirecting its outputs to a status-view and a list-window  on the created window. 
 
 Also, the user-code can directly show messages via 
-[`GuiLogManager`](docs/apidocs/latest/org/autogui/base/log/GuiLogManager.html).
+[`GuiLogManager`](docs/apidocs/latest/org.autogui/org/autogui/base/log/GuiLogManager.html).
 
   ```java
      import org.autogui.base.log.*;
@@ -930,18 +935,18 @@ Also, the user-code can directly show messages via
 
 ### Logging progress
 
-[`GuiLogEntryProgress`](docs/apidocs/latest/org/autogui/base/log/GuiLogEntryProgress.html)
+[`GuiLogEntryProgress`](docs/apidocs/latest/org.autogui/org/autogui/base/log/GuiLogEntryProgress.html)
 created by 
-[`GuiLogManager`](docs/apidocs/latest/org/autogui/base/log/GuiLogManager.html)
+[`GuiLogManager`](docs/apidocs/latest/org.autogui/org/autogui/base/log/GuiLogManager.html)
 can show and control a progress-bar.  The factory method 
-[`logProgress(n)`](docs/apidocs/latest/org/autogui/base/log/GuiLogManager.html#logProgress(int))
+[`logProgress(n)`](docs/apidocs/latest/org.autogui/org/autogui/base/log/GuiLogManager.html#logProgress(int))
 creates an instance of the entry with the max count `n`. 
 It can update the current count by 
-[`addValue(i)`](docs/apidocs/latest/org/autogui/base/log/GuiLogEntryProgress.html#addValue(int)) or 
-[`addValueP(p)`](docs/apidocs/latest/org/autogui/base/log/GuiLogEntryProgress.html#addValueP(double))
+[`addValue(i)`](docs/apidocs/latest/org.autogui/org/autogui/base/log/GuiLogEntryProgress.html#addValue(int)) or 
+[`addValueP(p)`](docs/apidocs/latest/org.autogui/org/autogui/base/log/GuiLogEntryProgress.html#addValueP(double))
 with taking 0...1.0. 
 The progress-bar can also show a message by 
-[`setMessage(s)`](docs/apidocs/latest/org/autogui/base/log/GuiLogEntryProgress.html#setMessage(java.lang.String)).
+[`setMessage(s)`](docs/apidocs/latest/org.autogui/org/autogui/base/log/GuiLogEntryProgress.html#setMessage(java.lang.String)).
 
 ```java
      import org.autogui.base.log.*;
@@ -979,7 +984,7 @@ in order to explicitly check the interruption.
 ### Logging exceptions
 
 The created window sets an unchaught exception-handler for displaying the exception in the logging list. Also 
-[`GuiLogManager.get().logError(e)`](docs/apidocs/latest/org/autogui/base/log/GuiLogManager.html#logError(java.lang.Throwable))
+[`GuiLogManager.get().logError(e)`](docs/apidocs/latest/org.autogui/org/autogui/base/log/GuiLogManager.html#logError(java.lang.Throwable))
 can explicitly display the given exception. The displayed exception becomes an item in the logging list with expandable stack-traces.
 
 ```java

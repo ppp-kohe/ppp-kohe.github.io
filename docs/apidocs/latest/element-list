@@ -1,3 +1,4 @@
+module:org.autogui
 org.autogui
 org.autogui.base
 org.autogui.base.log
