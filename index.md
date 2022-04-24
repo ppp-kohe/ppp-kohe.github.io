@@ -14,8 +14,8 @@ and composes Swing-based components for each type of property and action defined
 [GitHub Project Page](https://github.com/ppp-kohe/autogui.git)
 
 ```bash
-$ git clone https://github.com/ppp-kohe/autogui.git
-$ cd autogui
+git clone https://github.com/ppp-kohe/autogui.git
+cd autogui
 ```
 
 The project uses [apache-maven](http://maven.apache.org) and depends on a recent version of Java. 
@@ -24,8 +24,8 @@ The project uses [apache-maven](http://maven.apache.org) and depends on a recent
 * 1.2- : java 11 or later
 
 ```bash
-$ mvn package
-  # the command will generate target/autogui-1.4.jar
+mvn package
+  # the command will generate target/autogui-1.5.jar
 ```
 
 Note that the main part of the project does not depend on any libraries other than JDK classes. 
@@ -39,11 +39,14 @@ To use the library in your apache-maven project, you can insert the following `d
     <dependency>
         <groupId>org.autogui</groupId>
         <artifactId>autogui</artifactId>
-        <version>1.4</version>
+        <version>1.5</version>
     </dependency>
 ```
 
 The library jar is available from Maven Central Repository: [org.autogui:autogui](https://search.maven.org/artifact/org.autogui/autogui/).
+
+
+[![Maven Central](https://maven-badges.herokuapp.com/maven-central/org.autogui/autogui/badge.svg?color=44aa44)](https://maven-badges.herokuapp.com/maven-central/org.autogui/autogui)
 
 ## API documents
 
@@ -72,7 +75,7 @@ class Hello {
    }
 }
 
-/env -class-path target/autogui-1.4.jar
+/env -class-path target/autogui-1.5.jar
 
 import org.autogui.swing.*
 Hello h = new Hello();
@@ -177,7 +180,7 @@ The command will show a GUI window like the following image:
 <img src="docs/images/image-rename-demo-h.png" srcset="docs/images/image-rename-demo-h.png 1x, docs/images/image-rename-demo.png 2x" alt="ImageFlipDemo">
 
 You can drag & drop a directory to the *Dir* field and then listing files in the directory as the *Entries* table. 
-Note the *Rename* button actually changes names of the listed files to *New name*s without any warning.
+Note the *Rename* button actually changes names of the listed files to *New Name*s without any warning.
 
 This is constructed from the following code:
 
@@ -254,12 +257,12 @@ import java.util.*;
 }
 ```
 
-* In this demo, the library constructs GUI components by only selecting members attached the annotation `@GuiIncluded`. This is launched by `AutoGuiShell.get().showWindows(...)` as I call *strict mode*.
-* The file-path field *Dir*: When the user edits the field, the new text is set as `File` by invoking `setDir(File)`. The method loads files in the directory and constructs a new `ArrayList` object of `RenameEntry`. `RenameEntry` is the static inner class, and contains `File` and a new name prefixed with an index (`String.format("%03d-%s",...)`).    The rewriting `entries = es;` will cause updating the table display.
-* The *Entry* table: constructed from the list returned by `getEntries()`. The table columns are defined by the properties *File* and *New Name* of the element type of the list `<RenameEntry>`. Each row of the list corresponds to each element of the list. The updating of the item size in the table will be caused by changing of the identity of the list object returned by the getter method.
+* In this demo, the library constructs GUI components by selecting only members attached the annotation `@GuiIncluded`. This is launched by `AutoGuiShell.get().showWindow(...)` as I call *strict mode*.
+* The file-path field *Dir*: When the user edits the field, the new text is set as `File` by invoking `setDir(File)`. The method loads files in the directory and constructs a new `ArrayList` object of `RenameEntry`. `RenameEntry` is the static nested class, and contains `File` and a new name prefixed with an index (by `String.format("%03d-%s",...)`).    The rewriting `entries = es;` will cause updating the table display.
+* The *Entries* table: constructed from the list returned by `getEntries()`. The table columns are defined by the properties *File* and *New Name* of the element type of the list `<RenameEntry>`. Each row of the list corresponds to each element of the list. The updating of the item size in the table will be caused by changing of the identity of the list object returned by the getter method.
 * The *Rename* button: created from the `rename()` method for renaming entries.
 
-The table component of collection objects in the library is so powerful to extend the applications usage.
+The table component of collection objects in the library is so powerful to extend the usage of applications.
 
 ## Strict mode with @GuiIncluded
 
@@ -337,29 +340,29 @@ The recent versions (1.2-) have the `module-info.class` and require Java 11 or l
 ## Supported types and components
 
 * Basic value types
-  * String text-field: 
+  * [String text-field](#string-text-field): 
     [`java.lang.String`](https://docs.oracle.com/en/java/javase/11/docs/api/java.base/java/lang/String.html)
-  * File text-field: 
+  * [File text-field](#file-text-field): 
     [`java.nio.file.Path`](https://docs.oracle.com/en/java/javase/11/docs/api/java.base/java/nio/file/Path.html) or 
     [`java.io.File`](https://docs.oracle.com/en/java/javase/11/docs/api/java.base/java/io/File.html)
-  * Number spinner: a primitive numeric(`byte`, `short`, `int`, `long`, `float` or `double`) or a sub-type of
+  * [Number spinner](#number-spinner): a primitive numeric(`byte`, `short`, `int`, `long`, `float` or `double`) or a sub-type of
     [`java.lang.Number`](https://docs.oracle.com/en/java/javase/11/docs/api/java.base/java/lang/Number.html)
-  * Boolean check-box: `boolean` or 
+  * [Boolean check-box](#boolean-check-box): `boolean` or 
     [`java.lang.Boolean`](https://docs.oracle.com/en/java/javase/11/docs/api/java.base/java/lang/Boolean.html)
-  * Enum pull-down menu: a sub-type of 
+  * [Enum pull-down menu](#enum-pull-down-menu): a sub-type of 
     [`java.lang.Enum`](https://docs.oracle.com/en/java/javase/11/docs/api/java.base/java/lang/Enum.html)
-  * Image pane: a sub-type of 
+  * [Image pane](#image-pane): a sub-type of 
     [`java.awt.Image`](https://docs.oracle.com/en/java/javase/11/docs/api/java.desktop/java/awt/Image.html)
-  * Document editor: 
+  * [Document editor](#document-editor): 
     [`java.lang.StringBuilder`](https://docs.oracle.com/en/java/javase/11/docs/api/java.base/java/lang/StringBuilder.html) or 
     [`javax.swing.text.Document`](https://docs.oracle.com/en/java/javase/11/docs/api/java.desktop/javax/swing/text/Document.html)
-  * Embedded component: a sub-type of 
+  * [Embedded component](#embedded-component): a sub-type of 
     [`javax.swing.JComponent`](https://docs.oracle.com/en/java/javase/11/docs/api/java.desktop/javax/swing/JComponent.html)
-* Object pane: a user-defined object type with composition of properties and actions
+* [Object pane](#object-pane): a user-defined object type with composition of properties and actions
   * Object properties: `T getP() {...}`, `T p() {...}` (1.2-) , `void setP(T) {...}` or `T p;`
       * if all members are other user-defined objects, then the enclosing object will be bound to a tabbed-pane
   * Action methods: `void m() {...}`
-* Collection table: a sub-type of 
+* [Collection table](#collection-table): a sub-type of 
   [`java.util.Collection<E>`](https://docs.oracle.com/en/java/javase/11/docs/api/java.base/java/util/Collection.html)
   or an array `E[]` with columns based `E`
   * Value columns for `E`
@@ -376,7 +379,7 @@ The recent versions (1.2-) have the `module-info.class` and require Java 11 or l
         [`java.lang.Enum`](https://docs.oracle.com/en/java/javase/11/docs/api/java.base/java/lang/Enum.html)
       * Image column: a sub-type of 
         [`java.awt.Image`](https://docs.oracle.com/en/java/javase/11/docs/api/java.desktop/java/awt/Image.html)
-  * A user-defined object-type composing columns from its properties and actions
+  * [Object rows](#object-rows): A user-defined object-type composing columns from its properties and actions
   * Dynamic Collection table: a nested `Collection<Collection<E>>` or a multi-dimensional array `E[][]`
 
 ### String text-field
@@ -629,6 +632,35 @@ of objects of the class will be called at closing of owner window of those objec
 [`cleanUp()`](docs/apidocs/latest/org.autogui/org/autogui/swing/GuiSwingWindow.html#cleanUp())
 for completely closing the window.)
 
+#### Action property combination
+
+As a special rule, you can combine an action-button and a text-field in object pane:
+
+* An object-pane class has the `String <propName>` property, 
+* and the class also has the `<propName>Action()` action method. 
+
+Then, the generated text-field for the property will contain the action button for the method.
+
+```java
+import java.util.regex.*;
+class PatternFind {
+    String text;
+    String search;
+    void searchAction() {
+        var m = Pattern.compile(search).matcher(text);
+        if (m.find()) {
+            System.out.printf("found: %d%n", m.start());
+        } else {
+            System.out.println("not found");
+        }
+    }
+}
+org.autogui.swing.AutoGuiShell.showLive(new PatternFind())
+```
+
+<img src="docs/images/image-action-combination-h.png" srcset="docs/images/image-action-combination-h.png 1x, docs/images/image-action-combination.png 2x" alt="Action property combination">
+
+
 ### Object tabbed-pane
 
 A user-defined object which has only properties of sub user-defined objects without other value properties will be bound to a tabbed-pane. Components of each tab in the tabbed-pane become the pane created from the sub objects.
@@ -685,7 +717,7 @@ or its sub-type will be bound to a pane for embedding the property value as sub-
 To create a user-defined UI component, you will need to follow the rule of Swing components that the code for the component must be executed within the event-dispatching thread.
 And initialization of a field will be executed under a non event-dispatching thread such as the main-thread.  
 
-Thus the user code of the property for an embedded component should be defined as *a getter method that caches the returned component as a field*. 
+Thus, the user code of the property for an embedded component should be defined as *a getter method that caches the returned component as a field*. 
 For a property of the embedded component, the library executes the method within the event-dispatching thread.
 A returned embedded component will be added as a sub-component of the owner object-pane.
 
@@ -729,7 +761,7 @@ The column of the table will be created from the type-argument `E`.
 
 *In order to update display of the table from an action, it needs to replace instance of the list.* `prop = new ArrayList<>(prop);` is the easiest way for that.
 
-#### Object composition in Collection table
+#### Object rows
 
 If the type-argument`E` of `Collection<E>` is a user-defined object class, then columns of the  table are created from properties of the class.
 
@@ -821,7 +853,7 @@ org.autogui.swing.AutoGuiShell.showLive(new Hello())
 
 <img src="docs/images/image-collection-select-h.png" srcset="docs/images/image-collection-select-h.png 1x, docs/images/image-collection-select.png 2x" alt="Collection table with selection actions">
 
-In the above example, `List<Item>selectTop()` has `@GuiListSelectionUpdater`. The method becomes the action button "Select Top" and it causes changing the selection in the table of `prop ` as selecting the top item in the list, which is returned by the method. 
+In the above example, `List<Item> selectTop()` has `@GuiListSelectionUpdater`. The method becomes the action button "Select Top" and it causes changing the selection in the table of `prop ` as selecting the top item in the list, which is returned by the method. 
 
 And, `void selected(List<Item> items)` has `@GuiListSelectionCallback` and takes a list of items. The method also becomes the action button "*Selected", but the action of the button is automatically executed  by a selection change of the table of `prop`.
 
@@ -930,7 +962,7 @@ Also, *Control + Enter* will display the context menu for the focusing component
 
 ## Active Updating of UI Elements
 
-As default, GUIs generated by the library automatically updates its display, i.e. it notices changes that requires redisplaying by accessing their properties after some actions happened.
+As default, a GUI component generated by the library automatically updates its display, i.e. it notices changes that requires redisplaying by accessing their properties after some actions happened.
 
 The feature of 
 [`@GuiNotifierSetter`](docs/apidocs/latest/org.autogui/org/autogui/GuiNotifierSetter.html)
@@ -1011,6 +1043,50 @@ Additionally, [`GuiPreferencesLoader`](docs/apidocs/latest/org.autogui/org/autog
    h.prop //=> "Hello" 
 ```
 
+### Custom preferences for embedded components
+
+Your custom embedded components can easily interact with preferences mechanism of the library.
+
+To support the feature, a return-type of the property method must be your custom component-type that implements the [`GuiPreferences.PreferencesJsonSupport`](docs/apidocs/latest/org.autogui/org/autogui/base/mapping/GuiPreferencesLoader.PreferencesJsonSupport.html) interface. 
+The interface has 2 methods for generating and setting preferences-data as JSON objects.
+
+```java
+import org.autogui.base.mapping.GuiPreferences;
+import javax.swing.*;
+import java.util.*;
+
+class Hello { //object-pane type
+    MyPane pane;
+    MyPane getPane() { //embedded component returning a custom type
+        if (pane == null) pane = new MyPane();
+        return pane;
+    }
+}
+
+class MyPane extends JPanel
+     implements GuiPreferences.PreferencesJsonSupport {
+    JTextField data = new JTextField(20);
+    MyPane() { 
+        add(data); 
+    }
+    public Map<String,Object> getPrefsJson() { //data for writing to prefs-store
+        System.err.println("save " + data.getText());
+        return Map.of("myItem", data.getText());
+    }
+    @SuppressWarnings("unchecked")
+    public void setPrefsJson(Object v) { //set data from prefs-store
+        if (v instanceof Map<?,?>) {
+            data.setText(((Map<String,String>) v).getOrDefault("myItem", ""));
+        }
+    }
+}
+org.autogui.swing.AutoGuiShell.showLive(new Hello())
+```
+
+The returned object of `getPrefsJson()` must be one of simple JSON supported types (Map, List, String, Number, Boolean) and sufficiently small for storing preferences-store.
+
+
+
 ## Logging 
 
 The created window has a status-bar and a list of displaying logging entries. An logging entry  can be one of the following types:
@@ -1026,6 +1102,8 @@ The created window has a status-bar and a list of displaying logging entries. An
 The created window will replace 
 [`System.err`](https://docs.oracle.com/en/java/javase/11/docs/api/java.base/java/lang/System.html#err) and 
 [`System.out`](https://docs.oracle.com/en/java/javase/11/docs/api/java.base/java/lang/System.html#out) with redirecting its outputs to a status-view and a list-window  on the created window. 
+
+Note: the replacing feature can be controlled by system-properties read in [`GuiSwingLogManager#setupConsoleWithDefaultFlags()`](docs/apidocs/latest/org.autogui/org/autogui/swing/log/GuiSwingLogManager.html#setupConsoleWithDefaultFlags). You can dismiss the replacement by `-Dautogui.log.replaceErr=false -Dautogui.log.replaceOut=false`.
 
 Also, the user-code can directly show messages via 
 [`GuiLogManager`](docs/apidocs/latest/org.autogui/org/autogui/base/log/GuiLogManager.html).
@@ -1136,18 +1214,18 @@ A long running action will be an independent task with displaying an indetermina
 
 ## Dark-mode support
 
-The current Swing GUI (in Java16) does not have automatic support of recent OS's dark-mode changing.
+The current Swing GUI (in Java18) does not have automatic support of recent OS's dark-mode switching.
 
-However, there are some custom look-and-feel libraries for supporting dark-mode such [darklaf](https://github.com/weisJ/darklaf) and 
+However, there are some custom look-and-feel libraries for supporting dark-mode such as [darklaf](https://github.com/weisJ/darklaf) and 
 [flatlaf](https://www.formdev.com/flatlaf/).
 
 The library implicitly has code for detecting existence of *flatlaf* and applying its LAF at launching with following OS's current theme. The detection is simply done by accessing to the reflection Class object through `Class.forName`.
 
-For example in macOS, you can launch the library's app with the combination of flatlaf + [JBR](https://confluence.jetbrains.com/display/JBR/JetBrains+Runtime) than, it will get best for modern UI experience including displaying Emoji and the dark-mode titlebar.
+For example in macOS, you can launch the library's app with the combination of flatlaf (confirmed by `com.formdev:flatlaf:2.1`) and the JVM option `-Dapple.awt.application.appearance=system`, it will get best experience as modern GUI including displaying Emoji and the dark-mode title-bar.
 
 <img src="docs/images/image-dark-h.png" srcset="docs/images/image-dark-h.png 1x, docs/images/image-dark.png 2x" alt="Progress">
 
-You can also control the LAF setting by the JVM option `-Dorg.autogui.laf=...`.
+You can also control the LAF setting by the JVM option `-Dautogui.laf=...`.
 The value are listed in the document of
 [UIManagerUtil.selectLookAndFeelFromSpecialName(String)](docs/apidocs/latest/org.autogui/org/autogui/swing/util/UIManagerUtil.html#selectLookAndFeelFromSpecialName(java.lang.String)).
 
