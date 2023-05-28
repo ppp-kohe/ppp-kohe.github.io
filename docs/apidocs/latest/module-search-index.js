@@ -1,1 +1,1 @@
-moduleSearchIndex = [{"l":"org.autogui"}]
+moduleSearchIndex = [{"l":"org.autogui"}];updateSearchResults();
