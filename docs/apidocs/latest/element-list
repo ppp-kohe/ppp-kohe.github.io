@@ -8,5 +8,6 @@ org.autogui.swing
 org.autogui.swing.icons
 org.autogui.swing.log
 org.autogui.swing.mapping
+org.autogui.swing.prefs
 org.autogui.swing.table
 org.autogui.swing.util
