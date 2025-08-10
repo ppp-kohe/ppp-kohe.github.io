@@ -1,6 +1,7 @@
 module:org.autogui
 org.autogui
 org.autogui.base
+org.autogui.base.annotation
 org.autogui.base.log
 org.autogui.base.mapping
 org.autogui.base.type
